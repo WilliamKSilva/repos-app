@@ -17,8 +17,8 @@ export function useAuth() {
   const { navigate } = useNavigation()
 
   const redirect_uri = 'https://auth.expo.io/@williamkds/repos-app'
-  const client_id = 'b5c8080f1bb4db6b51cc'
-  const client_secret = '7f0afe34e641eb702422a28b0a6ea6830807360a'
+  const client_id = process.env.GITHUB_CLIENT_ID
+  const client_secret = process.env.GITHUB_CLIENT_SECRET
   const scope = encodeURI('user repo')
 
   async function handleSignIn() {
@@ -28,7 +28,7 @@ export function useAuth() {
     };
     
     await loadAsync({
-      clientId: client_id,
+      clientId: client_id || '',
       redirectUri: redirect_uri,
     },
     discovery
